@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>NEW TOOLS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="query.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  </head>
+  <body onload="initClock()">
+  <section>
+      <!--digital clock start-->
+      <div class="datetime">
+        <div class="date">
+          <span id="dayname">Day</span>,
+          <span id="month">Month</span>
+          <span id="daynum">00</span>,
+          <span id="year">Year</span>
+        </div>
+        <div class="time">
+          <span id="hour">00</span>:
+          <span id="minutes">00</span>:
+          <span id="seconds">00</span>
+          <span id="period">AM</span>
+        </div>
+      </div>
+      <!--digital clock end-->
+      <!--drop down start-->
+
+      <div class="menu-btn" id="menu-btn" onclick="showMenu()">☰</div>
+      <div id="sidebar" class="sidebar">
+          <div class="close-btn" onclick="closeMenu()">☰</div>
+          <a href="about.html">
+            <img src="img/me.jpg" class="profile-pic" alt="Profile">
+          </a>
+          <ul>
+            <li onclick="showCalculator()"><img src="img/calculator.jpg"> Calculator</li>
+            <li onclick="showRecorder()"><img src="img/mic.jpg"> Sound-recorder</li>
+            <li onclick="showCalendar()"><img src="img/calender.jpg"> Calendar</li>
+            <li onclick="showVoice()"><img src="img/speech.jpg"> Voice_to_text</li>
+          </ul>
+      </div>
+      <!--drop down end-->
+      <!--calculator start-->
+      <div id="calculator" class="calculator">
+        <button class="cal-close-btn" onclick="hideCalculator()">✖</button>
+        <h3>Scientific Calculator</h3>
+              <div class="display">
+                  <input id="screen" type="text" placeholder="0">
+              </div>
+
+              <div class="btns">
+                  <div class="row">
+                      <button id="ac" onclick="screen.value=''">AC</button>
+                      <button class="btn">(</button>
+                      <button class="btn">)</button>
+                      <button class="btn">%</button>
+                      <button id="ce" onclick="backspc()">⌦</button>
+                  </div>
+
+                  <div class="row">
+                      <button onclick="sin()">sin</button>
+                      <button class="btn">7</button>
+                      <button class="btn">8</button>
+                      <button class="btn">9</button>
+                      <button class="btn">÷</button>
+                  </div>
+
+                  <div class="row">
+                      <button onclick="cos()">cos</button>
+                      <button class="btn">4</button>
+                      <button class="btn">5</button>
+                      <button class="btn">6</button>
+                      <button class="btn">×</button>
+                  </div>
+
+                  <div class="row">
+                      <button onclick="tan()">tan</button>
+                      <button class="btn">1</button> 
+                      <button class="btn">2</button>
+                      <button class="btn">3</button>
+                      <button class="btn">-</button>
+                  </div>
+
+                  <div class="row">
+                      <button onclick="e()">e</button>
+                      <button class="btn">0</button>
+                      <button class="btn">.</button>
+                      <button onclick="pow()">x <span style="position: relative; bottom: .4em; right: .1em;">y</span> </button> 
+                      <button class="btn">+</button>
+                  </div>
+                  <div class="row">
+                      <button onclick="fact()">x!</button>
+                      <button onclick="pi()">π</button>
+                      <button onclick="log()">log</button>
+                      <button onclick="sqrt()">√</button>
+                      <button id="eval" onclick="screen.value=eval(screen.value)">=</button>
+                  </div>
+              </div>
+          </div>
+      <!--calculator end-->
+      <!--sound recorder start-->
+      <main>
+    <div id="recorder" class="sound-recorder">
+          <button class="sound-close-btn" onclick="hideRecorder()">✖</button>
+
+          <button class="mic-toggle" id="mic">
+              <i id="recordIcon" class="fa-solid fa-microphone-lines"></i>
+          </button>
+
+          <audio class="playback" controls></audio>
+        </div>
+      </main>
+      <!--sound recorder end-->
+      <!--calendar start-->
+        
+      <div class="calendar" id="calendar">
+        
+        <div class="header">
+            <button class="calendar-close-btn" onclick="hideCalendar()">✖</button>
+            <div id="prev" class="btn"><i class="fa-solid fa-arrow-left"></i></div>
+            <div id="month-year"></div>
+            <div id="next" class="btn"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+        <div class="days" id="days"></div>
+      </div>
+        <!--calendar end-->
+        <!--speech to text start-->
+        <div id="voice" class="voice_to_text">
+            <button class="voice-close-btn" onclick="hideVoice()">✖</button>
+            <h1>Voice to Text Converter</h1>
+            <textarea id="convert_text"></textarea>
+            <button id="click_to_convert">Voice to Text</button>
+      </div>
+      <!--speech to text end-->
+      <div class="greetings">
+        <h4>Good morning, You're welcome!</h4>
+      <script>
+        let h4 = document.querySelector('h4');
+        let date = new Date();
+        let hoursNow = date.getHours();
+
+        if (hoursNow > 17) {
+            h4.textContent = "Good Evening, You're welcome!";
+        }else if (hoursNow > 11) {
+            h4.textContent = "Good Afternoon, You're welcome!";
+        }else if (hoursNow > 23)  {
+            h4.textContent = "Good Morning, You're welcome!";
+        }else{
+            h4.textContent = "Welcome!";
+        }
+      </script>
+      </div>
+      <h2>TOOLS</h2>
+      
+      <div class="tool-container">
+        <div class="tool" onclick="showCalculator()">
+          <img src="img/calculator.jpg" alt="Calculator" class="icon">
+          <p>Calculator</p>
+        </div>
+        <div class="tool" onclick="showRecorder()">
+          <img src="img/mic.jpg" alt="Sound Recorder" class="icon">
+          <p>Sound Recorder</p>
+        </div>
+        <div class="tool" onclick="showCalendar()">
+          <img src="img/calender.jpg" alt="Calendar" class="icon">
+          <p>Calendar</p>
+        </div>
+        <div class="tool" onclick="showVoice()">
+          <img src="img/speech.jpg" alt="Voice_to_text" class="icon">
+          <p>Speech_to_Text</p>
+        </div>
+    </section>
+     <br><br><br> <br> <br><br> 
+     <footer>
+      <!--<div class="footies">
+        <div class="foot">
+          <a href="https://www.linkedin.com/in/abdul-malik-adebiyi-a56a7037b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </div>
+        <div class="foot">
+          <a href="maitto:adebiyiadedeji130@gmail.com" target="_blank">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+        <div class="foot">
+          <a href=""></a>
+        </div>
+      </div>-->
+      <h3>&copy Adebiyi Abdul-Malik 2025</h3>
+     </footer>
+    <script src="myscript.js" charset="utf-8"></script>
+  </body> 
+</html>

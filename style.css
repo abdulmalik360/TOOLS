@@ -1,0 +1,605 @@
+ body {
+        background-color: #fff;
+    }
+
+/*================ For Date & Time ================*/
+.datetime{
+  color: #000;
+  font-family: "Segoe UI", sans-serif;
+  width: 200px;
+  height: 60px;
+  padding: 15px 10px;
+  border: 3px solid #000;
+  border-radius: 10px;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 255, 255, 0.1));
+  transition: 0.5s;
+  transition-property: background, box-shadow;
+  justify-content: end;
+  align-items: top;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.datetime:hover{
+  background: gray;
+  box-shadow: 0 0 30px gray;
+}
+
+.date{
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.time{
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time span:not(:last-child){
+  position: relative;
+  margin: 0 6px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.time span:last-child{
+  color: #fff;
+  background:  #000;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 0 5px;
+  border-radius: 7px;
+}
+
+/*================ For Calculator ================*/
+    .content 
+    {
+        width: 100%;
+        margin-top: 1.7em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .row button 
+    {
+        width: 60px;
+        height: 30px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        margin: 5px;
+        border-radius: 4px;
+        transition: .1s;
+        box-shadow: 5px 5px 8px #00000020,
+                   -5px -5px 8px #ffff;
+    }
+
+    .row button:hover 
+    {
+        box-shadow:  inset 5px 5px 8px rgba(16, 16, 16, .1),
+                     inset -5px -5px 8px #fff;
+        background: #fff;
+    }
+
+    .display #screen 
+    {
+        margin-bottom: .5em;
+        width: 350px;
+        height: 70px;
+        font-size: 35px;
+        outline: none;
+        border: none;
+        text-align: right;
+        padding-right: .5em;
+        background: #ecf0f3;
+        border-radius: 6px;
+        box-shadow: inset 8px 8px 8px #cbced1,
+                    inset -8px -8px 8px #ffffff;
+    }
+
+    #eval 
+    {
+        background: #29ab87;
+        color: #fff;
+        box-shadow: inset 5px 5px 8px #00a86b,
+                    inset -5px -5px 8px #00a86b;
+    }
+
+    #eval:hover 
+    {
+        box-shadow: inset 5px 5px 8px #3bb143,
+                    inset -5px -5px 8px #3bb143;
+    }
+
+    #ac 
+    {
+        background: #fd6a02;
+        color: #fff;
+    }
+
+    #ac:hover 
+    {
+        box-shadow: inset 5px 5px 8px orange,
+                    inset -5px -5px 8px orange;
+    }
+
+    #ce 
+    {
+        background: #fd6a02;
+        color: #fff;
+    }
+
+    #ce:hover 
+    {
+          box-shadow: inset 5px 5px 8px orange,
+                      inset -5px -5px 8px orange;
+    }
+
+/*==============tool start===============*/
+.tool-container {
+  display: flex;
+  flex-wrap: wrap; 
+  position: relative;
+  top: 35px;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.tool {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+.tool:hover {
+  width: 160px;
+  height: 160px;
+}
+
+
+.icon {
+  width: 80px;
+  height: 80px;
+}
+
+.calculator {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #444;
+  padding: 20px;
+  background: #fff;
+  z-index: 1000;
+  width: 370px;
+  box-shadow: 0 0 10px gray;
+}
+.sound-recorder {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #444;
+  padding: 20px;
+  background: #fff;
+  z-index: 1000;
+  width: 300px;
+  box-shadow: 0 0 10px gray;
+}
+.calendar {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #444;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 0 10px gray;
+}
+
+.voice_to_text {
+  display: none;
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #444;
+  padding: 20px;
+  background: #fff;
+  z-index: 1000;
+  width: 300px;
+  box-shadow: 0 0 10px gray;
+}
+
+.cal-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.keys button {
+  margin: 5px;
+  padding: 10px 15px;
+}
+h2 {
+  text-align: center;
+  position: relative;
+  top: 15px;
+}
+
+
+/*================ For Sound-Recorder ================*/
+
+button {
+    appearance: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+}
+main {
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 2rem;
+}
+.mic-toggle {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    background-color: crimson;
+    margin-bottom: 4rem;
+    margin: auto;
+}
+.mic-toggle::after,
+.mic-toggle::before {
+    --pad: 0rem;
+    content: '';
+    position: absolute;
+    z-index: 0;
+    background-color: rgb(220, 20, 60, 0.2);
+    top: var(--pad);
+    left: var(--pad);
+    right: var(--pad);
+    bottom: var(--pad);
+    border-radius: 50%;
+}
+.mic-toggle::after {
+    transition: 0.4s;
+}
+.mic-toggle::before {
+    transition: 0.2s;
+}
+.mic-toggle:hover::after {
+    --pad: -1rem;
+}
+.mic-toggle:hover::before {
+    --pad: -2rem;
+}
+ .mic-toggle i {
+    position: relative;
+    z-index: 1;
+    font-size: 6rem;
+    color: #fff;
+}
+.mic-toggle.is-recording::after{
+    animation: smoothPadAfter 0.6s ease-in alternate-reverse forwards infinite;
+}
+.mic-toggle.is-recording::before{
+    animation: smoothPadABefore 0.6s ease-in alternate-reverse forwards infinite;
+}
+
+@keyframes smoothPadAfter {
+    0% {
+        top: -2rem;
+        left: -2rem;
+        right: -2rem;
+        bottom: -2rem;
+    }
+    100% {
+        top: -1rem;
+        left: -1rem;
+        right: -1rem;
+        bottom: -1rem;
+    }
+}
+@keyframes smoothPadBefore {
+    0% {
+        top: -1rem;
+        left: -1rem;
+        right: -1rem;
+        bottom: -1rem;
+    }
+    100% {
+        top: -0.5rem;
+        left: -0.5rem;
+        right: -0.5rem;
+        bottom: -0.5rem;
+    }
+}
+.playback {
+    margin-bottom: 1rem;
+    box-shadow: 0px 0px 1rem rgb(0, 0, 0, 0.2);
+    border-radius: 999px;
+    margin: auto;
+    margin-top: 50px;
+}
+.is-hidden {
+    display: none;
+}
+.sound-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+#download-btn {
+    padding: 12px 20px;
+    color: #fff;
+    background-color: grey;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    margin-left: 25%;
+}
+
+/*================ For Calender ================*/
+
+.calendar-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.calendar {
+  background-color: #000;
+  border-radius: 10px;
+  box-shadow: 0 0 30px #222222;
+  overflow: hidden;
+  width: 300px;
+  color: white;
+  padding: 20px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+}
+.btn {
+  cursor: pointer;
+}
+#month-year {
+  font-weight: bold;
+  font-size: 20px;
+}
+.weekdays, .days {
+  display: flex;
+  flex-wrap: wrap;
+}
+.days {
+  height: 210px;
+}
+.weekdays div, .days div {
+  width: 14.28%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 5px;
+  box-shadow: 5px 5px 8px #00000020,
+                   -5px -5px 8px #222222;
+}
+.days div {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.days div:hover {
+  background-color: white;
+  color: orangered;
+}
+.days .today {
+  background-color: orangered;
+  color: white;
+}
+.days .fade {
+  color: #555;
+}
+
+
+/*================ For Voice-to-Text ================*/
+
+#voice {
+    display: none;
+}
+.voice_to_text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: auto 10px;
+    background: linear-gradient(to right bottom, #d13cff, #031f6a);
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+}
+.voice_to_text {
+    width: 400px;
+    text-align: center;
+}
+#convert_text {
+    width: 80%;
+    height: 100px;
+    border-radius: 10px;
+    resize: none;
+    padding: 10px;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+h1 {
+    font-size: 30px;
+    color: #fff;
+    justify-content: center;
+}
+#click_to_convert {
+    padding: 12px 20px;
+    color: #fff;
+    background-color: #0ea4da;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+    justify-content: center;
+    
+}
+.voice-close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+/*================ For Others ================*/
+.profile {
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 2px solid black;
+}
+
+.menu-btn {
+  font-size: 30px;
+  cursor: pointer;
+  padding: 10px;
+  color: black;
+  position: relative;
+  width: 30px;
+  top: 0px;
+  padding: 0;
+  margin: 0;
+}
+.menu-btn:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background: #f1f7df;
+  color: black;
+  transition: 0.3s;
+  padding: 20px 10px;
+  z-index: 1000;
+  box-shadow: -2px 0 4px hsl(0 4% 15% / 10%);
+}
+
+#sidebar {
+  display: none;
+}
+
+.close-btn {
+  text-align: left;
+  font-size: 25px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar ul li img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+
+}
+h4 {
+  font-size: 1.3em;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 10px;
+  transform: translate(-50% -50%);
+}
+.footies {
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  height: 50px;
+  border-radius: 20px;
+  border: 2px solid #000;
+  background-color: #eee;
+  margin-left: auto;
+  margin-right: auto;
+}
+.foot {
+  align-items: center;
+  font-size: 30px;
+}
+h3 {
+  width: 100%;;
+  color: #555;
+  text-align: center;
+  margin-bottom: 0;
+  position: relative;
+  height: 20px;
+  bottom: 0px;
+}
