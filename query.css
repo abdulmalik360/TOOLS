@@ -63,5 +63,9 @@
       font-size: 25px;
      }
  }
+ .tool-container {
+  display: grid;
+  grid-template-columns: 2;
+ }
 
 }
