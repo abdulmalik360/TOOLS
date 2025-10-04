@@ -65,7 +65,9 @@
  }
  .tool-container {
   display: grid;
-  grid-template-columns: 2;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 10%;
+  column-gap: 10px;
  }
 
 }

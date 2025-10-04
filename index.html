@@ -152,11 +152,11 @@
         let date = new Date();
         let hoursNow = date.getHours();
 
-        if (hoursNow > 17) {
+        if (hoursNow >= 17 && hoursNow < 24) {
             h4.textContent = "Good Evening, You're welcome!";
-        }else if (hoursNow > 11) {
+        }else if (hoursNow >= 12 && hoursNow < 17) {
             h4.textContent = "Good Afternoon, You're welcome!";
-        }else if (hoursNow > 23)  {
+        }else if (hoursNow >= 24 && hoursNow < 12)  {
             h4.textContent = "Good Morning, You're welcome!";
         }else{
             h4.textContent = "Welcome!";
